@@ -19,8 +19,8 @@ Explore the deep technical setup, dependency lists, and implementation details f
 
 | Module | Purpose | Tech Highlights | Documentation |
 | --- | --- | --- | --- |
-| **🚀 FrontEnd** | User Interface & Client Logic | React, Vite, Shadcn UI, Recharts | **[View FrontEnd README](https://github.com/AmithShankar/Sampada---Finance-Tracker/tree/main/FrontEnd#readme)** |
-| **⚙️ BackEnd** | API Service & Security | Spring Boot, JWT, Hibernate, MySQL | **[View BackEnd README](https://github.com/AmithShankar/Sampada---Finance-Tracker/tree/main/BackEnd#readme)** |
+| **🚀 FrontEnd** | User Interface & Client Logic | React, Vite, Shadcn UI, Recharts | **[View FrontEnd README](https://github.com/AmithShankar/Sampada-Expense-Tracker/tree/main/FrontEnd#readme)** |
+| **⚙️ BackEnd** | API Service & Security | Spring Boot, JWT, Hibernate, MySQL | **[View BackEnd README](https://github.com/AmithShankar/Sampada-Expense-Tracker/tree/main/BackEnd#readme)** |
 
 ---
 
