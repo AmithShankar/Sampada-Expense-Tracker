@@ -60,9 +60,19 @@ A modern, responsive expense tracking application built with **React** and **Vit
     ```
 
 ## 📸 Screenshots
+![Login](https://github.com/user-attachments/assets/b4343e7a-2af4-454c-b17d-4edc42cfb8d9)
 
+![Dashboard](https://github.com/user-attachments/assets/0aaf3876-a6ee-4ddb-8983-9d712f4eea61)
 
+![Expenses](https://github.com/user-attachments/assets/5199dece-258d-4d34-89ef-dd2c0c42aeb6)
+
+![Analytics](https://github.com/user-attachments/assets/49ddc01c-4ca2-48d5-933d-186542601e6e)
+
+![Budgets](https://github.com/user-attachments/assets/f7f89743-94d4-4e95-85b2-0afe76260b3c)
+
+![Categories](https://github.com/user-attachments/assets/25e5214e-f062-45cb-b833-2a76ec0b1f14)
 
 ## 📄 License
+
 
 This project is licensed under the MIT License.
