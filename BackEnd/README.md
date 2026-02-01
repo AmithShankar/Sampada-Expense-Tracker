@@ -103,5 +103,4 @@ The robust RESTful API backend for the Sampada application, built with **Java** 
 ---
 
 ## 📄 License
-
 This project is licensed under the MIT License.
