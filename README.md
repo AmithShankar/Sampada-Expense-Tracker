@@ -6,7 +6,7 @@
 
 The application follows a decoupled client-server architecture. The frontend focuses on optimistic UI updates and efficient caching, while the backend ensures ACID-compliant transactions and stateless security.
 
-* **Presentation Layer:** React 18 (Vite) with **Shadcn UI** for accessible.
+* **Presentation Layer:** React 18 (Vite) with **Shadcn UI**.
 * **State Management:** Hybrid approach using **Zustand** (UI-state) and **React Query** (server-state caching).
 * **API Layer:** RESTful Spring Boot services with specialized endpoints for high-volume data aggregation.
 * **Security Layer:** JWT-based stateless authentication with password hashing and protected resource filters.
