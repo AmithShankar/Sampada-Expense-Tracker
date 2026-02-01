@@ -1,0 +1,323 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Core palette - Deep teal/blue financial aesthetic */
+    --background: 210 20% 98%;
+    --foreground: 215 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+
+    /* Primary - Deep teal */
+    --primary: 186 72% 30%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Soft slate */
+    --secondary: 210 15% 93%;
+    --secondary-foreground: 215 25% 20%;
+
+    --muted: 210 15% 95%;
+    --muted-foreground: 215 12% 50%;
+
+    /* Accent - Teal light */
+    --accent: 186 60% 94%;
+    --accent-foreground: 186 72% 25%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 15% 90%;
+    --input: 210 15% 90%;
+    --ring: 186 72% 30%;
+
+    --radius: 0.75rem;
+
+    /* Custom semantic colors */
+    --success: 152 69% 40%;
+    --success-foreground: 0 0% 100%;
+    --success-muted: 152 60% 94%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --warning-muted: 38 92% 95%;
+
+    --info: 199 89% 48%;
+    --info-foreground: 0 0% 100%;
+    --info-muted: 199 89% 95%;
+
+    /* Chart colors */
+    --chart-1: 186 72% 30%;
+    --chart-2: 152 69% 40%;
+    --chart-3: 38 92% 50%;
+    --chart-4: 280 65% 55%;
+    --chart-5: 199 89% 48%;
+    --chart-6: 340 75% 55%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(186 72% 30%),
+      hsl(199 89% 48%)
+    );
+    --gradient-success: linear-gradient(
+      135deg,
+      hsl(152 69% 40%),
+      hsl(152 69% 50%)
+    );
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 20% 98%));
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(215 25% 15% / 0.05);
+    --shadow-md:
+      0 4px 6px -1px hsl(215 25% 15% / 0.07),
+      0 2px 4px -2px hsl(215 25% 15% / 0.07);
+    --shadow-lg:
+      0 10px 15px -3px hsl(215 25% 15% / 0.08),
+      0 4px 6px -4px hsl(215 25% 15% / 0.08);
+    --shadow-xl:
+      0 20px 25px -5px hsl(215 25% 15% / 0.1),
+      0 8px 10px -6px hsl(215 25% 15% / 0.1);
+    --shadow-glow: 0 0 20px hsl(186 72% 30% / 0.15);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* OPTIMIZED: Richer Blue-Black Background for depth */
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    /* OPTIMIZED: Slightly lighter card for distinct layering */
+    --card: 217 33% 17%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 217 33% 17%;
+    --popover-foreground: 210 40% 98%;
+
+    /* OPTIMIZED: Luminous Teal - Brighter to pop against dark bg */
+    --primary: 186 80% 45%;
+    --primary-foreground: 222 47% 11%;
+
+    /* OPTIMIZED: Deep Slate Secondary */
+    --secondary: 217 33% 22%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 20%;
+    --muted-foreground: 215 20% 65%;
+
+    /* OPTIMIZED: Darker accent surface, brighter text */
+    --accent: 186 50% 15%;
+    --accent-foreground: 186 80% 75%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 85% 95%;
+
+    /* OPTIMIZED: Borders need to be visible but subtle */
+    --border: 217 33% 25%;
+    --input: 217 33% 25%;
+    --ring: 186 80% 50%;
+
+    /* OPTIMIZED: Desaturated semantics for less eye strain */
+    --success: 152 55% 45%;
+    --success-muted: 152 55% 15%;
+
+    --warning: 38 85% 50%;
+    --warning-muted: 38 85% 15%;
+
+    --info: 199 85% 55%;
+    --info-muted: 199 85% 15%;
+
+    /* OPTIMIZED: Brighter chart colors for dark mode */
+    --chart-1: 186 80% 50%;
+    --chart-2: 152 70% 50%;
+    --chart-3: 38 90% 60%;
+    --chart-4: 280 75% 65%;
+    --chart-5: 199 90% 60%;
+    --chart-6: 340 85% 65%;
+
+    /* OPTIMIZED: Dark Mode Gradient Overrides */
+    --gradient-card: linear-gradient(
+      180deg,
+      hsl(217 33% 19%),
+      hsl(217 33% 15%)
+    );
+
+    /* OPTIMIZED: Shadows - using colored shadows (glows) instead of black */
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.3);
+    --shadow-md:
+      0 4px 6px -1px hsl(0 0% 0% / 0.3), 0 2px 4px -2px hsl(0 0% 0% / 0.3);
+    --shadow-lg:
+      0 10px 15px -3px hsl(0 0% 0% / 0.4), 0 4px 6px -4px hsl(0 0% 0% / 0.4);
+    --shadow-glow: 0 0 25px hsl(186 80% 50% / 0.25); /* Stronger glow */
+
+    --sidebar-background: 222 47% 10%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 186 80% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 33% 20%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 33% 25%;
+    --sidebar-ring: 186 80% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  .glass-card {
+    /* OPTIMIZED: Added dark mode border support */
+    @apply bg-card/80 backdrop-blur-sm border border-border/50 dark:bg-card/40 dark:border-white/10;
+    box-shadow: var(--shadow-md);
+  }
+
+  .stat-card {
+    @apply relative overflow-hidden rounded-xl p-6 transition-all duration-300 border border-border/50;
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-md);
+  }
+
+  .stat-card:hover {
+    box-shadow: var(--shadow-lg);
+    /* OPTIMIZED: Subtle lift and glow color change on hover */
+    @apply dark:shadow-primary/20;
+    transform: translateY(-2px);
+  }
+
+  .chart-container {
+    @apply rounded-xl bg-card p-6 border border-border/50;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .nav-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-lg text-muted-foreground transition-all duration-200;
+  }
+
+  .nav-link:hover {
+    @apply bg-accent text-accent-foreground;
+  }
+
+  .nav-link.active {
+    @apply bg-primary text-primary-foreground;
+    box-shadow: var(--shadow-glow);
+  }
+
+  .badge-success {
+    @apply bg-success-muted text-success px-2.5 py-0.5 rounded-full text-xs font-medium border border-transparent dark:border-success/20;
+  }
+
+  .badge-warning {
+    @apply bg-warning-muted text-warning px-2.5 py-0.5 rounded-full text-xs font-medium border border-transparent dark:border-warning/20;
+  }
+
+  .badge-info {
+    @apply bg-info-muted text-info px-2.5 py-0.5 rounded-full text-xs font-medium border border-transparent dark:border-info/20;
+  }
+
+  .progress-bar {
+    @apply h-2 rounded-full bg-muted overflow-hidden;
+  }
+
+  .progress-fill {
+    @apply h-full rounded-full transition-all duration-500 ease-out;
+  }
+
+  .table-row-hover {
+    @apply transition-colors duration-150 hover:bg-accent/50;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .stagger-1 {
+    animation-delay: 0.1s;
+  }
+  .stagger-2 {
+    animation-delay: 0.2s;
+  }
+  .stagger-3 {
+    animation-delay: 0.3s;
+  }
+  .stagger-4 {
+    animation-delay: 0.4s;
+  }
+}
