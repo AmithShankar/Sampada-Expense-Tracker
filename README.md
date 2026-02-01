@@ -1,6 +1,6 @@
 ---
 
-# 💸 Sampada — Full-Stack Expense Tracker
+# Sampada — Full-Stack Expense Tracker
 
 **Sampada** (Sanskrit for *Wealth* and *Prosperity*) is a modern FinTech orchestrator designed to provide deep insights into spending habits. It bridges the gap between daily expenses and long-term financial goals through advanced analytics and high-performance engineering.
 
