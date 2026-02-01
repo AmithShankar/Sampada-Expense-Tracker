@@ -1,6 +1,6 @@
 ---
 
-# 💸 Sampada — Full-Stack Financial Intelligence
+## 💸 Sampada — Full-Stack Financial Intelligence
 
 **Sampada** (Sanskrit for *Wealth* and *Prosperity*) is a high-performance personal finance orchestrator. It transforms raw transaction data into actionable financial clarity through a reactive, state-optimized frontend and a secure, hardened Spring Boot backend.
 
