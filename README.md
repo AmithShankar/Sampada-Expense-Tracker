@@ -51,7 +51,7 @@ Sampada-Expense-Tracker/
 │   │   ├── security/         # JWT & Security filters
 │   │   ├── repository/       # Data Access Layer (JPA)
 │   │   ├── entity/           # Entities
-│   │   └── dto/            # DTOs
+│   │   └── dto/              # DTOs
 └── README.md                 # Root Documentation
 
 ```
