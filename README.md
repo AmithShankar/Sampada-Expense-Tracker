@@ -42,16 +42,16 @@ Sampada-Expense-Tracker/
 │   ├── src/
 │   │   ├── components/       # Reusable UI (Shadcn UI)
 │   │   ├── pages/            # Application Views
-│   │   ├── hooks/            # Custom React Query hooks
-│   │   ├── store/            # Zustand global state management
-│   │   └── api/              # Axios instance & interceptors
+│   │   ├── context/          # Zustand global state management
+│   │   └── components/api/   # Axios instance & interceptors
 ├── BackEnd/                  # Spring Boot API
 │   ├── src/main/java/
 │   │   ├── controller/       # REST Endpoints
 │   │   ├── service/          # Business logic & Calculations
 │   │   ├── security/         # JWT & Security filters
 │   │   ├── repository/       # Data Access Layer (JPA)
-│   │   └── model/            # Entities & DTOs
+│   │   ├── entity/           # Entities
+│   │   └── dto/            # DTOs
 └── README.md                 # Root Documentation
 
 ```
