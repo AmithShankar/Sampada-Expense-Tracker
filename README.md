@@ -60,14 +60,6 @@ Sampada-Expense-Tracker/
 
 ```
 
----
-
-## 👤 Lead Developer
-
-**Amith Shankar K M** *Front-End Developer specializing in React.js and Enterprise FinTech solutions.*
-
----
-
 ## 📄 License
 
 This project is licensed under the MIT License.
