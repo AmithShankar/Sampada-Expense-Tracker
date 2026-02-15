@@ -130,7 +130,8 @@ export default function Budgets() {
         subtitle="Set spending limits and track your progress."
       />
 
-      <div className="p-8 space-y-8">
+      <div className="p-4 sm:p-6 lg:p-8 space-y-6 lg:space-y-8">
+        {" "}
         <Card className="bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
           <CardHeader className="pb-4">
             <div className="flex items-center justify-between">
@@ -180,7 +181,6 @@ export default function Budgets() {
             />
           </CardContent>
         </Card>
-
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold text-foreground">
             Category Budgets
@@ -192,8 +192,8 @@ export default function Budgets() {
             </Button>
           )}
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {" "}
           {!budgetData || budgetData?.length === 0 ? (
             <div className="col-span-full flex flex-col items-center justify-center py-20 text-center text-gray-400">
               <div className="text-6xl mb-4 animate-bounce">🏷️</div>

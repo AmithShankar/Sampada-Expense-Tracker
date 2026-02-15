@@ -111,7 +111,7 @@ export default function Settings() {
         subtitle="Manage your account and preferences."
       />
 
-      <div className="p-8 max-w-4xl space-y-8 text-primary">
+      <div className="p-4 sm:p-6 lg:p-8 max-w-4xl space-y-6 lg:space-y-8 text-primary">
         <Card>
           <CardHeader>
             <div className="flex items-center gap-3">
@@ -247,7 +247,7 @@ export default function Settings() {
               <div className="space-y-2">
                 <Label>Default Payment Method</Label>
                 <Select defaultValue="card">
-                  <SelectTrigger>
+                  <SelectTrigger className="w-full md:w-1/2">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>

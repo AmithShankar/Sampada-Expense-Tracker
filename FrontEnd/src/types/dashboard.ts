@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 export interface HeaderProps {
-  title: string;
+  title?: string;
   subtitle?: string;
   onAddExpense?: () => void;
   isEmpty?: any;

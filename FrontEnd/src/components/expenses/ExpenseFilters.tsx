@@ -55,14 +55,17 @@ export function ExpenseFilters({ onFilterChange }: ExpenseFiltersProps) {
   const hasActiveFilters = Object.values(filters).some((v) => v !== "");
 
   const userId = useAuthStore((state) => state.userId);
-  const { data: categories } = useQuery({
+
+  const { data: categories = [] } = useQuery({
     queryKey: ["categories", userId],
     queryFn: () => getCategoriesApi(userId),
+    enabled: !!userId,
   });
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center gap-4 dark:text-primary">
+      {/* Filter Toggle Buttons */}
+      <div className="flex flex-wrap items-center gap-3 dark:text-primary">
         <Button
           variant={showFilters ? "default" : "outline"}
           onClick={() => setShowFilters(!showFilters)}
@@ -99,8 +102,10 @@ export function ExpenseFilters({ onFilterChange }: ExpenseFiltersProps) {
         )}
       </div>
 
+      {/* Filters Grid */}
       {showFilters && (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 p-6 rounded-xl bg-card border border-border shadow-lg animate-scale-in">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4 p-4 sm:p-6 rounded-xl bg-card border border-border shadow-lg animate-scale-in">
+          {/* Category */}
           <div className="space-y-2">
             <label className="text-sm font-bold text-foreground">
               Category
@@ -109,29 +114,30 @@ export function ExpenseFilters({ onFilterChange }: ExpenseFiltersProps) {
               value={filters.category}
               onValueChange={(v) => handleChange("category", v)}
             >
-              <SelectTrigger className="bg-background border-border text-foreground font-medium h-10">
+              <SelectTrigger className="w-full bg-background border-border text-foreground font-medium h-10">
                 <SelectValue placeholder="All categories" />
               </SelectTrigger>
               <SelectContent className="bg-card border-border text-foreground">
                 <SelectItem value="all" className="font-bold">
                   All categories
                 </SelectItem>
-                {categories.map((cat) => (
+                {categories.map((cat: any) => (
                   <SelectItem key={cat.id} value={cat.name}>
-                    <span className="flex items-center gap-2">{cat.name}</span>
+                    {cat.name}
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
           </div>
 
+          {/* Payment Method */}
           <div className="space-y-2">
             <label className="text-sm font-bold text-foreground">Payment</label>
             <Select
               value={filters.paymentMethod}
               onValueChange={(v) => handleChange("paymentMethod", v)}
             >
-              <SelectTrigger className="bg-background border-border text-foreground font-medium h-10">
+              <SelectTrigger className="w-full bg-background border-border text-foreground font-medium h-10">
                 <SelectValue placeholder="All methods" />
               </SelectTrigger>
               <SelectContent className="bg-card border-border text-foreground">
@@ -147,7 +153,8 @@ export function ExpenseFilters({ onFilterChange }: ExpenseFiltersProps) {
             </Select>
           </div>
 
-          <div className="space-y-2 lg:col-span-2">
+          {/* Date Range */}
+          <div className="space-y-2 sm:col-span-2 md:col-span-3 xl:col-span-2">
             <label className="text-sm font-bold text-foreground">
               Date Range
             </label>
@@ -201,6 +208,7 @@ export function ExpenseFilters({ onFilterChange }: ExpenseFiltersProps) {
             </Popover>
           </div>
 
+          {/* Min Amount */}
           <div className="space-y-2">
             <label className="text-sm font-bold text-foreground">
               Min Amount
@@ -208,12 +216,13 @@ export function ExpenseFilters({ onFilterChange }: ExpenseFiltersProps) {
             <Input
               type="number"
               placeholder="0"
-              className="bg-background border-border text-foreground font-medium h-10"
+              className="w-full bg-background border-border text-foreground font-medium h-10"
               value={filters.minAmount}
               onChange={(e) => handleChange("minAmount", e.target.value)}
             />
           </div>
 
+          {/* Max Amount */}
           <div className="space-y-2">
             <label className="text-sm font-bold text-foreground">
               Max Amount
@@ -221,7 +230,7 @@ export function ExpenseFilters({ onFilterChange }: ExpenseFiltersProps) {
             <Input
               type="number"
               placeholder="10000"
-              className="bg-background border-border text-foreground font-medium h-10"
+              className="w-full bg-background border-border text-foreground font-medium h-10"
               value={filters.maxAmount}
               onChange={(e) => handleChange("maxAmount", e.target.value)}
             />

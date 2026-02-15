@@ -161,7 +161,7 @@ export default function Categories() {
         subtitle="Organize your expenses with custom categories."
       />
 
-      <div className="p-8 space-y-8 text-primary">
+      <div className="p-4 sm:p-6 lg:p-8 space-y-6 lg:space-y-8 text-primary">
         {categories?.length != 0 && (
           <div className="flex justify-end">
             <Button className="gap-2" onClick={() => setShowAddDialog(true)}>
@@ -171,7 +171,8 @@ export default function Categories() {
           </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+          {" "}
           {!categories || categories?.length === 0 ? (
             <div className="col-span-full flex flex-col items-center justify-center py-20 text-center text-gray-400">
               <div className="text-6xl mb-4 animate-bounce">📂</div>
