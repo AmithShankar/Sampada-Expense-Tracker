@@ -69,8 +69,8 @@ export function Sidebar() {
         </div>
         {(!sidebarCollapsed || mobileMenuOpen) && (
           <div className="animate-fade-in flex-1 min-w-0">
-            <h1 className="font-bold text-lg text-foreground">ExpenseFlow</h1>
-            <p className="text-xs text-muted-foreground">Smart Tracker</p>
+            <h1 className="font-bold text-lg text-foreground">Sampada</h1>
+            <p className="text-xs text-muted-foreground">Expense Tracker</p>
           </div>
         )}
         {/* Close button for mobile */}
