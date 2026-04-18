@@ -51,7 +51,7 @@ A modern, responsive expense tracking application built with **React** and **Vit
 ### Prerequisites
 
 - Node.js (v18 or higher)
-- npm or yarn
+- npm
 
 ### Installation
 
