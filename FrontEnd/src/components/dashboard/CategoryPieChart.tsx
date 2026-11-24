@@ -1,5 +1,3 @@
-import { useAuthStore } from "@/contexts/AuthContext";
-import { useQuery } from "@tanstack/react-query";
 import {
   PieChart,
   Pie,
@@ -8,15 +6,8 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import { getCategoriesApi } from "../api/api";
 
 export function CategoryPieChart({ categoryBreakdown, ccy }: any) {
-  const userId = useAuthStore((state) => state.userId);
-  const { data: categories } = useQuery({
-    queryKey: ["categories", userId],
-    queryFn: () => getCategoriesApi(userId),
-  });
-
   return (
     <div
       className="chart-container animate-slide-up opacity-0"
@@ -63,10 +54,12 @@ export function CategoryPieChart({ categoryBreakdown, ccy }: any) {
               align="right"
               verticalAlign="middle"
               iconType="circle"
-              payload={categories?.map((item) => ({
-                value: item.name,
+              // Only the categories that have spending this month, so the legend matches the
+              // ring and stays inside the card.
+              payload={categoryBreakdown.map((item) => ({
+                value: item.category,
                 type: "circle",
-                color: item.colorCode,
+                color: item.color,
               }))}
               formatter={(value) => (
                 <span className="text-sm text-foreground">{value}</span>

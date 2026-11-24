@@ -27,7 +27,8 @@ export function ThemeProvider({
   storageKey = "expense-theme",
 }: ThemeProviderProps) {
   const [theme, setThemeState] = useState<Theme>(() => {
-    const stored = sessionStorage.getItem(storageKey);
+    // Read from the same place the effect below writes to, so the choice survives reloads.
+    const stored = localStorage.getItem(storageKey);
     if (stored === "light" || stored === "dark") {
       return stored;
     }

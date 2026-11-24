@@ -111,12 +111,12 @@ export default function Dashboard() {
         setAlertType("expenses");
         return;
       }
-      expensesCalculation(thisMonthData);
+      const monthTotal = expensesCalculation(thisMonthData);
 
-      //Calculating data for trend chart
-      const sixMonthsAgo = new Date(now.getMonth() - 6);
+      //Calculating data for trend chart: the current month and the five before it
+      const sixMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 5, 1);
       const sixMonthsData = data.filter((expense: any) => {
-        return new Date(expense.date).getTime() > sixMonthsAgo.getTime();
+        return new Date(expense.date).getTime() >= sixMonthsAgo.getTime();
       });
 
       const initialValues = {};
@@ -144,7 +144,8 @@ export default function Dashboard() {
       }, initialValues);
 
       //Calculating data for pie chart
-      const grandTotal = Number(expensesData.total) || 0;
+      // Use this render's total: expensesData state has not updated yet at this point.
+      const grandTotal = monthTotal;
 
       const pieChartData = categories.map((category) => {
         const categoryExpenses = thisMonthData.filter(
@@ -236,10 +237,22 @@ export default function Dashboard() {
         0,
       ) || 0;
 
-    const totalBudget =
-      categories?.reduce((acc, cat) => acc + (Number(cat.budget) || 0), 0) || 0;
+    // Budgets are stored per category per month, so only this month's count toward "Budget Used".
+    // Same "MMMM yyyy" (e.g. "November 2026") the budget form saves.
+    const thisMonthLabel = new Date().toLocaleString("en-US", {
+      month: "long",
+      year: "numeric",
+    });
+    const monthBudgets =
+      budgets?.filter((budget) => !budget.month || budget.month === thisMonthLabel) ?? [];
+    const totalBudget = monthBudgets.reduce(
+      (acc, budget) => acc + (Number(budget.amount) || 0),
+      0,
+    );
 
-    const average = count > 0 ? calculatedTotal / count : 0;
+    // Daily average = this month's spend spread over the days elapsed so far.
+    const daysSoFar = new Date().getDate();
+    const average = count > 0 ? calculatedTotal / daysSoFar : 0;
     const budgetUsed =
       totalBudget > 0 ? (calculatedTotal / totalBudget) * 100 : 0;
 
@@ -249,6 +262,7 @@ export default function Dashboard() {
       average: parseFloat(average.toFixed(2)),
       budgetUsed: parseFloat(budgetUsed.toFixed(2)),
     });
+    return calculatedTotal;
   }
 
   useEffect(() => {
@@ -319,7 +333,7 @@ export default function Dashboard() {
           />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <BudgetProgress budgets={chartData.budgetProgressData} ccy={ccy} />
           <RecentTransactions
             expenses={chartData.recentTransactionsData}

@@ -52,7 +52,7 @@ export const categories: CategoryColumn[] = [
 ];
 
 const formatMonth = (date: Date) =>
-  date.toLocaleString("default", { month: "long", year: "numeric" });
+  date.toLocaleString("en-US", { month: "long", year: "numeric" });
 const now = new Date();
 const thisMonth = formatMonth(now);
 
@@ -131,256 +131,79 @@ export const budgets: Budget[] = [
   }, // new category
 ];
 
-const randomDateWithinLastMonths = (() => {
-  const minPerMonth = 2;
-  const maxMonths = 7;
-  let generatedCount = {};
+// Sample dates are fixed relative to today, so every visit (and every screenshot) shows the same
+// spread: six expenses in the current month and a few in each of the five months before it.
+// monthsAgo 0 = current month. Days past today are pulled back to today so nothing is in the future.
+const sampleDate = (monthsAgo: number, day: number) => {
+  const today = new Date();
+  const lastDay =
+    monthsAgo === 0
+      ? today.getDate()
+      : new Date(today.getFullYear(), today.getMonth() - monthsAgo + 1, 0).getDate();
+  const date = new Date(
+    today.getFullYear(),
+    today.getMonth() - monthsAgo,
+    Math.min(day, lastDay),
+    10,
+    30,
+  );
+  const value = date > today ? today : date;
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${value.getFullYear()}-${pad(value.getMonth() + 1)}-${pad(value.getDate())} ${pad(value.getHours())}:${pad(value.getMinutes())}:00`;
+};
 
-  return () => {
-    const now = new Date();
-
-    // pick a random month from the last 7 months
-    const monthOffset = Math.floor(Math.random() * maxMonths);
-    const targetMonth = new Date(
-      now.getFullYear(),
-      now.getMonth() - monthOffset,
-      1,
-    );
-    const monthKey = `${targetMonth.getFullYear()}-${targetMonth.getMonth()}`;
-
-    // initialize counter for this month
-    if (!generatedCount[monthKey]) generatedCount[monthKey] = 0;
-    generatedCount[monthKey]++;
-
-    const start = new Date(
-      targetMonth.getFullYear(),
-      targetMonth.getMonth(),
-      1,
-    );
-
-    // clamp end date to now if it's current month
-    const endOfMonth = new Date(
-      targetMonth.getFullYear(),
-      targetMonth.getMonth() + 1,
-      0,
-      23,
-      59,
-      59,
-    );
-    const end =
-      targetMonth.getMonth() === now.getMonth() &&
-      targetMonth.getFullYear() === now.getFullYear()
-        ? now
-        : endOfMonth;
-
-    const randomTime =
-      start.getTime() + Math.random() * (end.getTime() - start.getTime());
-    return new Date(randomTime).toISOString().replace("T", " ").slice(0, 19);
-  };
-})();
-
-export const expenses: Expense[] = [
-  {
-    id: 1,
-    category: categories[0],
-    amount: 100,
-    currency: "INR",
-    date: randomDateWithinLastMonths(),
-    paymentMethod: "UPI",
-    notes: "Bakery Snacks",
-    isRecurring: true,
-  },
-  {
-    id: 3,
-    category: categories[3],
-    amount: 300,
-    currency: "USD",
-    date: randomDateWithinLastMonths(),
-    paymentMethod: "Card",
-    notes: "Movie",
-    isRecurring: false,
-  },
-  {
-    id: 4,
-    category: categories[7],
-    amount: 10,
-    currency: "INR",
-    date: randomDateWithinLastMonths(),
-    paymentMethod: "Wallet",
-    notes: "Pencil",
-    isRecurring: false,
-  },
-  {
-    id: 6,
-    category: categories[7],
-    amount: 150,
-    currency: "INR",
-    date: randomDateWithinLastMonths(),
-    paymentMethod: "Others",
-    notes: "Stationery",
-    isRecurring: false,
-  },
-  {
-    id: 7,
-    category: categories[3],
-    amount: 3200,
-    currency: "INR",
-    date: randomDateWithinLastMonths(),
-    paymentMethod: "UPI",
-    notes: "New shoes",
-    isRecurring: false,
-  },
-  {
-    id: 8,
-    category: categories[5],
-    amount: 500,
-    currency: "INR",
-    date: randomDateWithinLastMonths(),
-    paymentMethod: "Cash",
-    notes: "Medicine",
-    isRecurring: false,
-  },
-  {
-    id: 9,
-    category: categories[0],
-    amount: 980,
-    currency: "INR",
-    date: randomDateWithinLastMonths(),
-    paymentMethod: "Card",
-    notes: "Supermarket trip",
-    isRecurring: false,
-  },
-  {
-    id: 10,
-    category: categories[2],
-    amount: 1200,
-    currency: "INR",
-    date: randomDateWithinLastMonths(),
-    paymentMethod: "UPI",
-    notes: "Movie and snacks",
-    isRecurring: false,
-  },
-  {
-    id: 11,
-    category: categories[6],
-    amount: 5000,
-    currency: "INR",
-    date: randomDateWithinLastMonths(),
-    paymentMethod: "Card",
-    notes: "Electronics repair",
-    isRecurring: false,
-  },
-  {
-    id: 12,
-    category: categories[1],
-    amount: 750,
-    currency: "INR",
-    date: randomDateWithinLastMonths(),
-    paymentMethod: "Wallet",
-    notes: "Bus pass",
-    isRecurring: true,
-  },
-  {
-    id: 13,
-    category: categories[4],
-    amount: 1800,
-    currency: "INR",
-    date: randomDateWithinLastMonths(),
-    paymentMethod: "UPI",
-    notes: "Electricity bill",
-    isRecurring: true,
-  },
-  {
-    id: 14,
-    category: categories[0],
-    amount: 650,
-    currency: "INR",
-    date: randomDateWithinLastMonths(),
-    paymentMethod: "Cash",
-    notes: "Fresh vegetables",
-    isRecurring: false,
-  },
-  {
-    id: 15,
-    category: categories[3],
-    amount: 4200,
-    currency: "INR",
-    date: randomDateWithinLastMonths(),
-    paymentMethod: "Card",
-    notes: "Holiday shopping",
-    isRecurring: false,
-  },
-  {
-    id: 17,
-    category: categories[2],
-    amount: 1100,
-    currency: "INR",
-    date: randomDateWithinLastMonths(),
-    paymentMethod: "UPI",
-    notes: "New Year eve food",
-    isRecurring: false,
-  },
-  {
-    id: 19,
-    category: categories[6],
-    amount: 460,
-    currency: "INR",
-    date: randomDateWithinLastMonths(),
-    paymentMethod: "UPI",
-    notes: "Friends Trip",
-    isRecurring: false,
-  },
-  {
-    id: 20,
-    category: categories[2],
-    amount: 400,
-    currency: "INR",
-    date: randomDateWithinLastMonths(),
-    paymentMethod: "Cash",
-    notes: "Clothes",
-    isRecurring: false,
-  },
-  {
-    id: 21,
-    category: categories[4],
-    amount: 600,
-    currency: "INR",
-    date: randomDateWithinLastMonths(),
-    paymentMethod: "Card",
-    notes: "Electricity Bill",
-    isRecurring: true,
-  },
-  {
-    id: 22,
-    category: categories[1],
-    amount: 7000,
-    currency: "INR",
-    date: randomDateWithinLastMonths(),
-    paymentMethod: "UPI",
-    notes: "Bike ride",
-    isRecurring: false,
-  },
-  {
-    id: 25,
-    category: categories[2],
-    amount: 100,
-    currency: "INR",
-    date: randomDateWithinLastMonths(),
-    paymentMethod: "Card",
-    notes: "Handkerchief",
-    isRecurring: false,
-  },
-  {
-    id: 26,
-    category: categories[3],
-    amount: 600,
-    currency: "INR",
-    date: randomDateWithinLastMonths(),
-    paymentMethod: "UPI",
-    notes: "Bought a game on steam",
-    isRecurring: false,
-  },
+type SampleRow = [
+  id: number,
+  categoryIndex: number,
+  amount: number,
+  monthsAgo: number,
+  day: number,
+  paymentMethod: Expense["paymentMethod"],
+  notes: string,
+  isRecurring: boolean,
 ];
+
+const sampleRows: SampleRow[] = [
+  // Current month
+  [1, 0, 100, 0, 2, "UPI", "Bakery snacks", true],
+  [13, 4, 850, 0, 3, "UPI", "Electricity bill", true],
+  [9, 0, 980, 0, 5, "Card", "Supermarket trip", false],
+  [12, 1, 750, 0, 6, "Wallet", "Bus pass", true],
+  [6, 7, 150, 0, 8, "Others", "Stationery", false],
+  [26, 3, 600, 0, 9, "UPI", "Bought a game on Steam", false],
+  // 1 month ago
+  [14, 0, 650, 1, 4, "Cash", "Fresh vegetables", false],
+  [21, 4, 600, 1, 12, "Card", "Electricity bill", true],
+  [10, 3, 1200, 1, 18, "UPI", "Movie and snacks", false],
+  [4, 7, 10, 1, 22, "Wallet", "Pencil", false],
+  // 2 months ago
+  [22, 1, 7000, 2, 7, "UPI", "Bike ride", false],
+  [20, 2, 400, 2, 15, "Cash", "Clothes", false],
+  [8, 5, 500, 2, 20, "Cash", "Medicine", false],
+  // 3 months ago
+  [15, 2, 4200, 3, 10, "Card", "Holiday shopping", false],
+  [17, 0, 1100, 3, 25, "UPI", "Dinner with family", false],
+  // 4 months ago
+  [11, 2, 5000, 4, 9, "Card", "Electronics repair", false],
+  [19, 6, 460, 4, 21, "UPI", "Friends trip", false],
+  // 5 months ago
+  [7, 2, 3200, 5, 6, "UPI", "New shoes", false],
+  [25, 2, 100, 5, 14, "Card", "Handkerchief", false],
+  [3, 3, 300, 5, 19, "Card", "Movie", false],
+];
+
+export const expenses: Expense[] = sampleRows.map(
+  ([id, categoryIndex, amount, monthsAgo, day, paymentMethod, notes, isRecurring]) => ({
+    id,
+    category: categories[categoryIndex],
+    amount,
+    currency: "INR",
+    date: sampleDate(monthsAgo, day),
+    paymentMethod,
+    notes,
+    isRecurring,
+  }),
+);
 
 expenses.sort((a, b) => {
   return new Date(b.date).getTime() - new Date(a.date).getTime();

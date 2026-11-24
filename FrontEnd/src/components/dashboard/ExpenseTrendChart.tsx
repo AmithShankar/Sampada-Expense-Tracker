@@ -23,7 +23,11 @@ export function ExpenseTrendChart({ monthlyTrends, ccy }: any) {
 
       <div className="h-[300px]">
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={monthlyTrends}>
+          {/* Right margin keeps the last month label from being cut off at the card edge. */}
+          <LineChart
+            data={monthlyTrends}
+            margin={{ top: 5, right: 28, left: 0, bottom: 5 }}
+          >
             <defs>
               <linearGradient id="colorAmount" x1="0" y1="0" x2="0" y2="1">
                 <stop

@@ -1,0 +1,11 @@
+# Dependencies and build output
+node_modules/
+dist/
+
+# Local Claude Code worktrees and settings
+.claude/
+
+# Env files
+.env
+.env.*
+!.env.example

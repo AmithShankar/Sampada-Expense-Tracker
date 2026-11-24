@@ -53,7 +53,9 @@ export function Sidebar() {
 
   const getInitials = (name: string) => {
     return name
-      .split(" ")
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean)
       .map((n) => n[0])
       .join("")
       .toUpperCase()
@@ -115,7 +117,6 @@ export function Sidebar() {
                 />
               ) : (
                 <span className="text-sm font-semibold text-primary">
-                  {profile.fullName ? getInitials(profile.fullName) : "U"}
                   {profile?.fullName ? getInitials(profile.fullName) : "U"}
                 </span>
               )}
@@ -153,7 +154,6 @@ export function Sidebar() {
               />
             ) : (
               <span className="text-sm font-semibold text-primary">
-                {profile.fullName ? getInitials(profile.fullName) : "U"}
                 {profile?.fullName ? getInitials(profile.fullName) : "U"}
               </span>
             )}
